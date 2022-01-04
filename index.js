@@ -3,7 +3,6 @@ console.log('This file is loaded');
 let siteLinks = document.getElementsByClassName('moreLinks__link');
 let page = document.body;
 let siteClass = '';
-console.log(siteClass = siteLinks[1].getAttribute('id'));
 
 for (var i = 0; i < siteLinks.length; i++) {
 
