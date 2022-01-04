@@ -293,6 +293,7 @@ blockquote:hover::before {
 	transform: translateY(110%) translateX(50%);
 	background: white;
 	border: 1px solid var(--accent-clr);
+	border-bottom-width: 4px;
 	border-radius: var(--border-radius);
 	box-shadow: var(--box-shadow), 0px -1px 2px rgb(0 0 0 /0.1);
 	z-index: 999;
