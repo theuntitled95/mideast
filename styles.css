@@ -4,7 +4,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	transition: all 0.1s ease-in-out;
+	/* transition: all 0.1s ease-in-out; */
 }
 
 .academy-site {
@@ -250,7 +250,7 @@ blockquote:hover::before {
 .header::after {
 	content: "";
 	position: absolute;
-	bottom: 0;
+	bottom: 0px;
 	left: 0;
 	height: 5px;
 	width: 100%;
@@ -293,7 +293,6 @@ blockquote:hover::before {
 	transform: translateY(110%) translateX(50%);
 	background: white;
 	border: 1px solid var(--accent-clr);
-	border-bottom-width: 4px;
 	border-radius: var(--border-radius);
 	box-shadow: var(--box-shadow), 0px -1px 2px rgb(0 0 0 /0.1);
 	z-index: 999;
@@ -377,17 +376,59 @@ input:focus::-webkit-input-placeholder {
 
 .mainNav {
 	display: flex;
+	opacity: 1;
 	gap: 1rem;
 	flex: 1;
 }
+.mainNav.show {
+	display: flex;
+	opacity: 1;
+}
 .menuIcon {
 	display: none;
+	position: absolute;
+	top: 35px;
+	right: 35px;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
 	z-index: 500;
+}
+
+.menuIcon .bar {
+	background: var(--accent-clr);
+	border-radius: var(--border-radius);
+	width: 100%;
+	height: 2px;
+	transition: all 0.2s ease-in-out;
 }
 .nav.secondaryMenu {
 	gap: 0.25rem;
 }
-
+.menuIcon.open .bar {
+	width: 125%;
+}
+.menuIcon.open .bar:nth-child(1) {
+	transform: rotate(45deg);
+	position: absolute;
+	top: 45%;
+}
+.menuIcon.open .bar:nth-child(2) {
+	transform: translateX(100%);
+	transition-timing-function: cubic-bezier(0.34, -0.93, 1, -0.2);
+	transition-delay: 0.1s;
+}
+.menuIcon.open .bar:nth-child(3) {
+	transform: rotate(-405deg);
+	position: absolute;
+	top: 45%;
+	transition-timing-function: cubic-bezier(0.87, 0.74, 0, 1.76);
+	transition-delay: 0.2s;
+	transition-duration: 0.6s;
+}
 .nav {
 	display: flex;
 	align-items: center;
@@ -401,14 +442,60 @@ input:focus::-webkit-input-placeholder {
 	color: var(--clr-link);
 	padding: 10px 15px;
 }
-
+.container {
+	width: 100%;
+}
+.hero {
+	background: var(--accent-clr-dark);
+	min-height: calc(100vh - 80px);
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: white;
+}
+.hero::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 50%;
+	background: linear-gradient(
+		to bottom,
+		hsla(5, 15%, 5%, 0) 0%,
+		hsla(5, 15%, 5%, 0.013) 8.1%,
+		hsla(5, 15%, 5%, 0.049) 15.5%,
+		hsla(5, 15%, 5%, 0.104) 22.5%,
+		hsla(5, 15%, 5%, 0.175) 29%,
+		hsla(5, 15%, 5%, 0.259) 35.3%,
+		hsla(5, 15%, 5%, 0.352) 41.2%,
+		hsla(5, 15%, 5%, 0.45) 47.1%,
+		hsla(5, 15%, 5%, 0.55) 52.9%,
+		hsla(5, 15%, 5%, 0.648) 58.8%,
+		hsla(5, 15%, 5%, 0.741) 64.7%,
+		hsla(5, 15%, 5%, 0.825) 71%,
+		hsla(5, 15%, 5%, 0.896) 77.5%,
+		hsla(5, 15%, 5%, 0.951) 84.5%,
+		hsla(5, 15%, 5%, 0.987) 91.9%,
+		hsl(5, 15%, 5%) 100%
+	);
+}
+.hero__title {
+	font-size: max(3vw, 3.4rem);
+	line-height: 0.9;
+	text-align: center;
+}
 .section {
 	width: min(1080px, 100%);
-	margin: 20px auto 50px;
+	margin-block-start: 20px;
+	margin-inline: auto;
 	padding: 20px 40px;
 	background: white;
-	border-radius: var(--border-radius);
-	border-top: 5px solid var(--accent-clr);
+	/* border-radius: var(--border-radius); */
+	border-right: 5px solid var(--accent-clr);
+	border-left: 5px solid var(--main-clr);
 	box-shadow: var(--box-shadow);
 	min-height: 100%;
 	position: relative;
@@ -418,13 +505,16 @@ input:focus::-webkit-input-placeholder {
 	text-align: center;
 	line-height: 425px;
 	font-size: 500px;
-	color: var(--accent-clr);
+	color: white;
+	-webkit-text-stroke: 2px var(--accent-clr);
+	text-stroke: 2px var(--accent-clr);
 	width: 175px;
 	height: 175px;
 	position: absolute;
 	top: -40px;
 	left: -110px;
 	transform-origin: center;
+	transition: all 0.5s ease;
 	/* animation: rotates 5s linear infinite; */
 	z-index: -1;
 }
@@ -489,7 +579,7 @@ input:focus::-webkit-input-placeholder {
 
 @media screen and (max-width: 1080px) {
 	.menuIcon {
-		display: block;
+		display: flex;
 	}
 	.mainNav,
 	.nav {
@@ -498,9 +588,10 @@ input:focus::-webkit-input-placeholder {
 		align-items: center;
 	}
 	.mainNav {
-		display: none;
 		position: absolute;
 		background-color: white;
+		opacity: 0;
+		display: none;
 		top: 0;
 		right: 0;
 		width: 100vw;
@@ -514,8 +605,9 @@ input:focus::-webkit-input-placeholder {
 		height: 50px;
 	}
 	.section {
-		border-top-width: 20px;
+		border-width: 10px;
 		border-radius: 0;
+		padding: 20px;
 	}
 	.section::before {
 		z-index: 1;
@@ -554,8 +646,4 @@ input:focus::-webkit-input-placeholder {
 	to {
 		transform: rotate(360deg);
 	}
-}
-
-.show {
-	display: flex;
 }

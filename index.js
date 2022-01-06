@@ -3,6 +3,7 @@ console.log('This file is loaded');
 let siteLinks = document.getElementsByClassName('moreLinks__link');
 let page = document.body;
 let siteClass = '';
+console.log(siteClass = siteLinks[1].getAttribute('id'));
 
 for (var i = 0; i < siteLinks.length; i++) {
 
@@ -16,9 +17,10 @@ for (var i = 0; i < siteLinks.length; i++) {
 
 }
 
-let showMenu = document.getElementById('menuIcon');
+let showMenuBtn = document.getElementById('menuIcon');
 let nav = document.getElementById('mainNav');
 
-showMenu.onclick = ()=> {
+showMenuBtn.onclick = ()=> {
+    showMenuBtn.classList.toggle('open');
     nav.classList.toggle('show');
 }
