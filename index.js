@@ -1,4 +1,4 @@
-console.log('This file is loaded');
+console.log('index.js is loaded');
 
 let siteLinks = document.getElementsByClassName('moreLinks__link');
 let page = document.body;
